@@ -1,34 +1,103 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/cats">Cats</router-link> |
-      <router-link to="/dogs">Dogs</router-link> |
-      <router-link to="/pet">Pet</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="sandbox">
+    <v-navigation-drawer
+      v-model="primaryDrawer.model"
+      :clipped="primaryDrawer.clipped"
+      :floating="primaryDrawer.floating"
+      :mini-variant="primaryDrawer.mini"
+      :permanent="primaryDrawer.type === 'permanent'"
+      :temporary="primaryDrawer.type === 'temporary'"
+      app
+      overflow
+    >
+      <div id="nav">
+        <v-list rounded>
+          <v-list-item-group color="primary">
+            <v-list-item :key="home" :to="'/'" link>
+              <v-list-item-icon>
+                <i class="material-icons">
+                  home
+                </i>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Home</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item :key="cats" :to="'/cats'" link>
+              <v-list-item-icon>
+                <i class="material-icons">
+                  pets
+                </i>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Cats</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item :key="dogs" :to="'/dogs'" link>
+              <v-list-item-icon>
+                <i class="material-icons">
+                  pets
+                </i>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Dogs</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item :key="pet" :to="'/pet'" link>
+              <v-list-item-icon>
+                <i class="material-icons">
+                  pets
+                </i>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>Pet</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </div>
+    </v-navigation-drawer>
+
+    <v-app-bar
+      :clipped-left="primaryDrawer.clipped"
+      app
+    >
+      <v-app-bar-nav-icon
+        v-if="primaryDrawer.type !== 'permanent'"
+        @click.stop="primaryDrawer.model = !primaryDrawer.model"
+      />
+      <v-toolbar-title>Adopt a Pet</v-toolbar-title>
+    </v-app-bar>
+
+    <v-content>
+      <v-container fluid>
+        <router-view/>
+      </v-container>
+    </v-content>
+
+    <v-footer
+      :inset="footer.inset"
+      app
+    >
+      <span class="px-4">&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  name: 'App',
+  data: () => ({
+    primaryDrawer: {
+      model: 'dark',
+      type: 'Temporary',
+      clipped: true,
+      floating: true,
+      mini: false
+    },
+    footer: {
+      inset: false
     }
-  }
+  })
 }
-</style>
+</script>
