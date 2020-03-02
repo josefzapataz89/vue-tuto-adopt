@@ -2,17 +2,25 @@
   <div>
     <h1>Cats for Adoption</h1>
     <hr>
+    <br>
     <v-data-table
       :headers="headers"
       :items="cats"
       :items-per-page="5"
       class="elevation-1"
-    ></v-data-table>
+    >
+      <template
+        slot="item.name"
+        scope="data"
+      >
+        <router-link :to="`/pets/cats/${data.item.id}`">{{data.item.name}}</router-link>
+      </template>
+    </v-data-table>
   </div>
 </template>
 
 <script>
-import cats from '@/data/cats'
+import { mapState } from 'vuex'
 export default {
   name: 'Cats',
   data () {
@@ -64,9 +72,13 @@ export default {
           align: 'start',
           value: 'notes'
         }
-      ],
-      cats
+      ]
     }
+  },
+  computed: {
+    ...mapState([
+      'cats'
+    ])
   }
 }
 </script>

@@ -1,5 +1,7 @@
 export default [
   {
+    id: 1,
+    species: 'dog',
     name: 'Sheeba',
     breed: 'collie',
     gender: 'female',
@@ -10,6 +12,8 @@ export default [
     notes: 'Pure breed. Trained for competitions.'
   },
   {
+    id: 2,
+    species: 'dog',
     name: 'Hillary',
     breed: 'mut',
     gender: 'female',
@@ -20,6 +24,8 @@ export default [
     notes: 'Super friendly'
   },
   {
+    id: 3,
+    species: 'dog',
     name: 'Zeus',
     breed: 'afghan hound',
     gender: 'male',
@@ -30,6 +36,8 @@ export default [
     notes: 'Super friendly'
   },
   {
+    id: 4,
+    species: 'dog',
     name: 'Katie',
     breed: 'golden retriever',
     gender: 'female',

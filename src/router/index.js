@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Cats from '../views/Cats.vue'
-import Dogs from '../views/Dogs.vue'
-import Pet from '../views/Pet.vue'
 
 Vue.use(VueRouter)
 
@@ -11,22 +7,23 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "about" */ '../views/Home.vue')
   },
   {
     path: '/cats',
     name: 'cats',
-    component: Cats
+    component: () => import(/* webpackChunkName: "about" */ '../views/Cats.vue')
   },
   {
     path: '/dogs',
     name: 'dogs',
-    component: Dogs
+    component: () => import(/* webpackChunkName: "about" */ '../views/Dogs.vue')
   },
   {
-    path: '/pet',
-    name: 'pet',
-    component: Pet
+    path: '/pets/:species/:id',
+    name: 'pets',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Pet.vue'),
+    props: true
   }
 ]
 
